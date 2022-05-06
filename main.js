@@ -83,45 +83,44 @@ getID("btn-console").onclick = function () {
 
 /* ====================================================================== */
 // Bài 4 - Tìm số dương nhỏ nhất trong mảng
-// var array = [1,5,6,-7,8,-10,10];
-
-// function soDuong(array) {
-//     var min = -1;
-
-//     for(var i = 0; i < array.length; i++) {
-//         if((min == -1 || array[i] < min) && array[i] > 0) {
-//             min = array[i];
-//         }
-//     }
-//     return min;
-// }
-
-// console.log(soDuong(array))
-
 getID("btn-inKetQua").onclick = function () {
     var minNum = -1;
+    var inResult = '';
 
     for (var i = 0; i < arrList.length; i++) {
         if ((minNum == -1 || arrList[i] < minNum) && arrList[i] > 0) {
             minNum = arrList[i];
+            inResult = `Số dương nhỏ nhất trong mảng [${arrList}]: ${minNum}`;
+        } else {
+            inResult = `Không có số dương nhỏ nhất trong mảng [${arrList}]`;
         }
     }
 
-    getID("inKetQua").innerHTML = `Số dương nhỏ nhất trong mảng [${arrList}]: ${minNum}`;
+    getID("inKetQua").innerHTML = inResult;
 
     getID("inKetQua").classList.add("alert-success");
 }
+/* test case: số dương trùng nhau thì kết quả -1
+
+
+
+
+
 /* ====================================================================== */
 // Bài 5 - Tìm số chẵn cuối cùng của mảng
 getID("btn-lastNum").onclick = function () {
     for (var i = arrList.length - 1; i >= 0; i--) {
         if (arrList[i] % 2 == 0 && arrList[i] > 0) {
             getID("lastNum").innerHTML = `Số chẵn cuối cùng trong mảng  [${arrList}]: ${arrList[i]}`;
+            getID("lastNum").classList.add("alert-success");
             break;
         }
         getID("lastNum").innerHTML = -1;
     }
 }
+
+
+
 
 
 /* ====================================================================== */
@@ -143,26 +142,31 @@ function getB(arrList) {
 // Đổi chỗ vị trí 2 phần thử trong mảng
 var flag;
 
-getID("btn-doiCho").onclick = function() {
+getID("btn-doiCho").onclick = function () {
     var print = '';
 
     var index1 = getID("vitri1").value;
-    console.log(index1);
 
     var index2 = getID("vitri2").value;
-    console.log(index2);
 
+    // Hoán vị giá trị của 
     if (index1 <= arrList.length && index2 <= arrList.length) {
-        flag = getA(arrList);
-        getA(arrList) = getB(arrList);
-        getB(arrList) = flag;
+        flag = arrList[index1];
+        arrList[index1] = arrList[index2];
+        arrList[index2] = flag;
         print = `Mảng sau khi đổi chỗ 2 vị trí ${index1} và ${index2}: [${arrList}]`;
     } else {
         print = `Không tìm thấy giá trị thứ ${index1} hoặc thứ ${index2} trong mảng. Vui lòng kiểm tra lại phần tử trong mảng!!!!`;
     }
 
     getID("doiCho").innerHTML = print;
+
+    getID("doiCho").classList.add("alert-success");
 }
+
+
+
+
 
 /* ====================================================================== */
 // Bài 7 - Sắp xếp mảng tăng dần
@@ -181,6 +185,10 @@ getID("btn-tangdan").onclick = function () {
         getID("xepTangDan").classList.add("alert-success");
     }
 }
+
+
+
+
 
 /* ====================================================================== */
 // Bài 8 - Tìm số nguyên tố đầu tiên
@@ -205,6 +213,9 @@ getID("btn-soNT").onclick = function () {
 
 
 
+
+
+
 /* ====================================================================== */
 // Bài 9 - Đếm số nguyên
 getID("btn-demSo").onclick = function () {
@@ -220,6 +231,12 @@ getID("btn-demSo").onclick = function () {
     getID("demSoNguyen").classList.add("alert-success");
 }
 
+
+
+
+
+
+
 /* ====================================================================== */
 // Bài 10 - So sánh số lượng số âm và số dương trong mảng
 // Đếm số lượng số dương trong mảng
@@ -227,7 +244,7 @@ function countduong(arrList) {
     var countDuong = 0;
 
     for (var i = 0; i <= arrList.length - 1; i++) {
-        if (arr[i] > 0) {
+        if (arrList[i] > 0) {
             countDuong++;
         }
     }
@@ -239,7 +256,7 @@ function countam(arrList) {
     var countAm = 0;
 
     for (var i = 0; i <= arrList.length - 1; i++) {
-        if (arr[i] < 0) {
+        if (arrList[i] < 0) {
             countAm++;
         }
     }
