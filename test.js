@@ -37,7 +37,7 @@ function doiCho(i, j) {
         return(`Không tìm thấy giá trị thứ ${i} hoặc thứ ${j} trong mảng. Vui lòng kiểm tra lại phần tử trong mảng!!!!`);
     }
 }
-console.log(doiCho(0, 2))
+console.log(doiCho(0, 3))
 
 // // Bài 7 - Sắp xếp tăng dần
 // var hoanVi;
