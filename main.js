@@ -84,24 +84,31 @@ getID("btn-console").onclick = function () {
 /* ====================================================================== */
 // Bài 4 - Tìm số dương nhỏ nhất trong mảng
 getID("btn-inKetQua").onclick = function () {
-    var minNum = -1;
+    var minNum = 0;
     var inResult = '';
 
     for (var i = 0; i < arrList.length; i++) {
-        if ((minNum == -1 || arrList[i] < minNum) && arrList[i] > 0) {
+        if (arrList[i] > 0) {
             minNum = arrList[i];
-            inResult = `Số dương nhỏ nhất trong mảng [${arrList}]: ${minNum}`;
-        } else {
-            inResult = `Không có số dương nhỏ nhất trong mảng [${arrList}]`;
+            break;
         }
+    }
+
+    if(minNum != 0) /* Vì số 0 không phải là số dương và số âm */ {
+        for (var i = 0; i <= arrList.length; i++) {
+            if (arrList[i] > 0 && arrList[i] < minNum) {
+                minNum = arrList[i];
+            }
+            inResult = `Số dương nhỏ nhất trong mảng [${arrList}]: ${minNum}`;
+        }
+    } else {
+        inResult = `Không có số dương nhỏ nhất trong mảng [${arrList}]`;
     }
 
     getID("inKetQua").innerHTML = inResult;
 
     getID("inKetQua").classList.add("alert-success");
 }
-/* test case: số dương trùng nhau thì kết quả -1
-
 
 
 
@@ -208,6 +215,7 @@ getID("btn-soNT").onclick = function () {
             break;
         }
         getID("soNguyenTo").innerHTML = `-1`;
+        getID("soNguyenTo").classList.add("alert-success");
     }
 }
 
